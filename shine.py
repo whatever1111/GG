@@ -83,7 +83,6 @@ def deal(x,y,xp,yp,degp,sp):
 def do(i,xp,yp,degp,sp,putin,zan):
     while i < len(putin):
         if putin[i] == "(":
-	    print i
 	    i += 1
             i = do(i,xp,yp,degp,sp,putin,zan)
         if putin[i] == "line":
