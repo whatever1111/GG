@@ -83,7 +83,9 @@ def deal(x,y,xp,yp,degp,sp):
 def do(i,xp,yp,degp,sp,putin,zan):
     while i < len(putin):
         if putin[i] == "(":
-            zan = do(i,xp,yp,degp,sp,putin,zan)
+	    print i
+	    i += 1
+            i = do(i,xp,yp,degp,sp,putin,zan)
         if putin[i] == "line":
             i += 2
             x0 = value(i,putin)
@@ -147,6 +149,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             i += 1
             r = value(i,putin)
             i += 1
+	    
             n = 3
 	    list1 = panta(x0,y0,r,n,xp,yp,degp,sp)
             zan += list1
@@ -154,7 +157,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
                 zan += ["fill"]
             else: zan += ["stroke"]
         elif putin[i] == "square" or putin[i] == "filledsquare":
-            i += 1
+            i += 2
             x0 = value(i,putin)
             i += 1
             y0 = value(i,putin)
@@ -182,7 +185,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
                 zan += ["fill"]
             else: zan += ["stroke"]
         elif putin[i] == "hexa" or putin[i] == "filledhexa":
-            i += 1
+            i += 2
             x0 = value(i,putin)
             i += 1
             y0 = value(i,putin)
@@ -228,8 +231,8 @@ def do(i,xp,yp,degp,sp,putin,zan):
                 e += 360
             while b >= 360:
                 b -= 360
-            while b >= 360:
-                b -= 360
+            while e >= 360:
+                e -= 360
             degb = 2 * pi * b /360
             dege = 2 * pi * e /360
 	    x1 = x0 + r * math.cos(degb)
@@ -248,7 +251,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             zan += [x0,y0,"moveto"]
             zan += [x1,y1,"lineto"]
             zan += [x0,y0,float(r * sp),float(b + degp),float(e + degp),"arc"]
-            zan += [x2,y2,"lineto"]
+            zan += [x0,y0,"lineto"]
             if putin[i - 7] == "filledsector":
                 zan += ["fill"]
             else: zan += ["stroke"]
@@ -256,16 +259,16 @@ def do(i,xp,yp,degp,sp,putin,zan):
             i += 2
             xp = value(i + 1)
             yp = value(i + 2)
-            zan = do(i,xp,yp,degp,sp,putin,zan)
+            i = do(i,xp,yp,degp,sp,putin,zan)
         elif putin[i] == "rotate":
             i += 2
             degp = value(i + 1)
             degp = 2 * pi * degp /360
-            zan = do(i,xp,yp,degp,sp,putin,zan)
+            i = do(i,xp,yp,degp,sp,putin,zan)
         elif putin[i] == "translate":
             i += 2
             sp = value(i + 1)
-            zan = do(i,xp,yp,degp,sp,putin,zan)
+            i = do(i,xp,yp,degp,sp,putin,zan)
 
 
         elif putin[i] == "color":
@@ -282,7 +285,9 @@ def do(i,xp,yp,degp,sp,putin,zan):
             w = value(i,putin)
             i += 1
             zan += [w,"setlinewidth"]
-        return zan
+	elif putin[i] == ")":
+		i += 1
+        	return i
 
 global zan
 zan = []
@@ -298,7 +303,10 @@ for i in putin3:
     if i != " " and i != "":
         putin.append(i)
 n = len(putin)
-zan = do(0,0,0,0,1,putin,zan)
+i = 0
+while i < n:
+	i = do(i,0,0,0,1,putin,zan)
+
 k = 0
 zu = []
 i = 0
