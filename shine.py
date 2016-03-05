@@ -290,7 +290,7 @@ global dict
 dict = {}
 global pi
 pi = 3.1415926
-putin1 = sys.stdin.readline()
+putin1 = sys.stdin.read()
 putin2 = ' '.join(putin1.split())
 putin3 = re.split(" |\t|\n|\r|,|",putin2)
 putin = []
