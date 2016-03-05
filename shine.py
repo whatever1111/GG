@@ -102,6 +102,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
 	    y1 = float(done[1])
             zan += [x0,y0,"moveto"]
             zan += [x1,y1,"lineto"]
+            zan += ["stroke"]
         elif putin[i] == "rect" or putin[i] == "filledrect":
             i += 2
             x0 = value(i,putin)
@@ -137,6 +138,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             zan += [x0,y0,"lineto"]
             if putin[i - 6] == "filledrect":
                 zan += ["fill"]
+            else: zan += ["stroke"]
         elif putin[i] == "tri" or putin[i] == "filledtri":
             i += 2
             x0 = value(i,putin)
@@ -150,6 +152,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             zan += list1
             if putin[i - 5] == "filledtri":
                 zan += ["fill"]
+            else: zan += ["stroke"]
         elif putin[i] == "square" or putin[i] == "filledsquare":
             i += 1
             x0 = value(i,putin)
@@ -163,6 +166,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             zan += list1
             if putin[i - 4] == "filledsquare":
                 zan += ["fill"]
+            else: zan += ["stroke"]
         elif putin[i] == "penta" or putin[i] == "filledpenta":
             i += 2
             x0 = value(i,putin)
@@ -176,6 +180,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             zan += list1
             if putin[i - 5] == "filledpenta":
                 zan += ["fill"]
+            else: zan += ["stroke"]
         elif putin[i] == "hexa" or putin[i] == "filledhexa":
             i += 1
             x0 = value(i,putin)
@@ -189,6 +194,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             zan += list1
             if putin[i -4 ] == "filledhexa":
                 zan += ["fill"]
+            else: zan += ["stroke"]
         elif putin[i] == "ngon" or putin[i] == "filledngon":
             i += 2
             x0 = value(i,putin)
@@ -203,6 +209,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             zan += list1
             if putin[i - 6] == "filledngon":
                 zan += ["fill"]
+            else: zan += ["stroke"]
         elif putin[i] == "sector" or putin[i] == "filledsector":
             i += 2
             x0 = value(i,putin)
@@ -244,7 +251,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             zan += [x2,y2,"lineto"]
             if putin[i - 7] == "filledsector":
                 zan += ["fill"]
-
+            else: zan += ["stroke"]
         elif putin[i] == "translate":
             i += 2
             xp = value(i + 1)
@@ -297,6 +304,6 @@ zu = []
 i = 0
 for sb in zan:
 	if (num(sb)):
-		print sb,
+		sys.stdout.write( str(sb) + " ")
 	else:
-		print sb			
+		sys.stdout.write( str(sb) + "\r")
