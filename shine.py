@@ -181,7 +181,6 @@ putin = []
 for i in putin3:
     if i != " " and i != "" and i != None:
         putin.append(i)
-do(putin,zan)
 sys.stdout.write("%!PS-Adobe-3.0 EPSF-3.0\r")
 sys.stdout.write("%%BoundingBox: 0 0 1239 1752\r")
 for sb in zan:
