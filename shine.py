@@ -3,67 +3,67 @@ import math
 import re
 
 def profix(i,putin):
-    	judg = 0
-	res = 0
-	sb = putin[i]
-	if (sb == "("):
-		dou = value(i,putin)
-		sb = float(dou[0])
-		i = dou[1]
-		judg = 1
-	if (sb == "cos"):
-		i += 1
-		dou = value(i,putin)
-		a = float(dou[0])
-		i = dou[1]
-		res = float(math.cos(a*pi / 180))
-		judg = 2
-	elif (sb == "sin"):
-		i += 1
-		dou = value(i,putin)
-		a = float(dou[0])
-		i = dou[1]
-		res = float(math.sin(a*pi / 180))
-		judg = 2
-	if judg == 1:
-		a = sb
-	else:
-		dou = value(i,putin)
-		a = float(dou[0])
-		i = dou[1]
-	if judg == 2:
-		oper = "wocao"
-	else:
-		i += 1
-		oper = putin[i]
-		i += 1
-	if (oper == "+"): 
-		dou = value(i,putin)
-		b = float(dou[0])
-		i = dou[1]
-		res = a + b		
-	elif (oper == "-"):
-		dou = value(i,putin)
-		b = float(dou[0])
-		i = dou[1]
-		res = a - b
-	elif (oper == "*"):
-		dou = value(i,putin)
-		b = float(dou[0])
-		i = dou[1]
-		res = a * b
-	elif (oper == "/"):
-		dou = value(i,putin)
-		b = float(dou[0])
-		i = dou[1]
-		res = a / b
-	elif ( num(oper) ):
-
-		res = float(oper)
-	judg = 0
-	i += 1
-	dou = [res,i]
-	return dou
+    judg = 0
+    res = 0
+    sb = putin[i]
+    if (sb == "("):
+        dou = value(i,putin)
+        sb = float(dou[0])
+        i = dou[1]
+        judg = 1
+    if (sb == "cos"):
+        i += 1
+        dou = value(i,putin)
+        a = float(dou[0])
+        i = dou[1]
+        res = float(math.cos(a*pi / 180))
+        judg = 2
+    elif (sb == "sin"):
+        i += 1
+        dou = value(i,putin)
+        a = float(dou[0])
+        i = dou[1]
+        res = float(math.sin(a*pi / 180))
+        judg = 2
+    if judg == 1:
+        a = sb
+    else:
+        dou = value(i,putin)
+        a = float(dou[0])
+        i = dou[1]
+    
+    if judg == 2:
+        oper = "wocao"
+    else:
+        i += 1
+        oper = putin[i]
+        i += 1
+    if (oper == "+"): 
+        dou = value(i,putin)
+        b = float(dou[0])
+        i = dou[1]
+        res = a + b		
+    elif (oper == "-"):
+        dou = value(i,putin)
+        b = float(dou[0])
+        i = dou[1]
+        res = a - b
+    elif (oper == "*"):
+        dou = value(i,putin)
+        b = float(dou[0])
+        i = dou[1]
+        res = a * b
+    elif (oper == "/"):
+        dou = value(i,putin)
+        b = float(dou[0])
+        i = dou[1]
+        res = a / b
+    elif ( num(oper) ):
+        res = float(oper)
+    judg = 0
+    i += 1
+    dou = [res,i]
+    return dou
 
 
 def num(oper):
@@ -81,10 +81,10 @@ def value(i,putin):
     if (oper == "("):
         i += 1
         dou = profix(i,putin)
-	res = dou[0]
-	i = dou[1]
-	dou = [res,i]
-	return dou
+        res = dou[0]
+        i = dou[1]
+        dou = [res,i]
+        return dou
     elif (num(oper)):  
         res = float(oper)
     elif dict.has_key(oper):
@@ -113,22 +113,22 @@ def deal(x,y,xp,yp,degp,sp):
     y = (y + yp) * sp
     len1 = math.sqrt(x ** 2 + y ** 2)
     if len1 == 0:
-	   done = [0 , 0]
-	   return done
+        done = [0 , 0]
+        return done
     else: deg = math.acos(y / len1 )
     if degp == 0:
-	   done = [x , y]
-	   return done
+        done = [x , y]
+        return done
     else:
-    	x = len1 * math.cos(deg + degp)*sp
-   	y = len1 * math.sin(deg + degp)*sp
+        x = len1 * math.cos(deg + degp)*sp
+        y = len1 * math.sin(deg + degp)*sp
         done = [x , y]  
-    	return done
+        return done
 
 def do(i,xp,yp,degp,sp,putin,zan):
     while i < len(putin):
         if putin[i] == "(":
-	    i += 1
+            i += 1
             i = do(i,xp,yp,degp,sp,putin,zan)
         if putin[i] == "line":
             i += 2
@@ -415,7 +415,7 @@ while i < n:
 sys.stdout.write("%!PS-Adobe-3.0 EPSF-3.0\r")
 sys.stdout.write("%%BoundingBox: 0 0 1239 1752\r")
 for sb in zan:
-   	if (num(sb)):
-        	sys.stdout.write( str(sb) + " ")
-	else:
-		sys.stdout.write( str(sb) + "\n")
+    if (num(sb)):
+        sys.stdout.write( str(sb) + " ")
+    else:
+        sys.stdout.write( str(sb) + "\n")
