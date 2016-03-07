@@ -165,16 +165,6 @@ def do(putin,zan):
 	    i += 1
 
 
-global zan
-zan = []
-global dict
-dict = {}
-global pi
-pi = 3.1415926
-sys.stdin.read()
+
 sys.stdout.write("%%BoundingBox: 0 0 1239 1752\r")
-for sb in zan:
-	if (num(sb)):
-		sys.stdout.write( str(sb) + " ")
-	else:
-		sys.stdout.write( str(sb) + "\n")
+
