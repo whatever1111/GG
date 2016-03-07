@@ -171,7 +171,7 @@ global dict
 dict = {}
 global pi
 pi = 3.1415926
-putin1 = sys.stdin.read()
+sys.stdin.read()
 sys.stdout.write("%%BoundingBox: 0 0 1239 1752\r")
 for sb in zan:
 	if (num(sb)):
