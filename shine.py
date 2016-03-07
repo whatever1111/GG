@@ -6,7 +6,7 @@ def profix(i,putin):
 	res = 0
 	oper = putin[i]
 	i += 1
-	a = fvalue(i,putin)
+	a = value(i,putin)
 	i += 1
 	if (oper == "+"): 
 		dou = float(a + value(i,putin))
@@ -87,7 +87,10 @@ def deal(x,y,xp,yp,degp,sp):
     x = (x + xp) * sp
     y = (y + yp) * sp
     len1 = math.sqrt(x ** 2 + y ** 2)
-    deg = math.acos(y / len1 )
+    if len1 == 0:
+	done = [0 , 0]
+	return done
+    else: deg = math.acos(y / len1 )
     if degp == 0:
 	done = [x , y]
 	return done
@@ -103,7 +106,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
 	    i += 1
             i = do(i,xp,yp,degp,sp,putin,zan)
         if putin[i] == "line":
-            i += 2
+            i += 1
             dou = value(i,putin)
 	    x0 = float(dou[0])
 	    i = dou[1]
@@ -119,7 +122,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             dou = value(i,putin)
 	    y1 = float(dou[0])
 	    i = dou[1]
-            i += 2
+            i += 1
             done = deal (x0,y0,xp,yp,degp,sp)
 	    x0 = float(done[0])
 	    y0 = float(done[1])
@@ -130,7 +133,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             zan += [x1,y1,"lineto"]
             zan += ["stroke"]
         elif putin[i] == "rect" or putin[i] == "filledrect":
-            i += 2
+            i += 1
             dou = value(i,putin)
 	    x0 = float(dou[0])
 	    i = dou[1]
@@ -146,7 +149,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             dou = value(i,putin)
 	    h = float(dou[0])
 	    i = dou[1]
-            i += 2
+            i += 1
 
 	    x1 = x0 + w
             y1 = y0
@@ -171,11 +174,11 @@ def do(i,xp,yp,degp,sp,putin,zan):
             zan += [x2,y2,"lineto"]
             zan += [x3,y3,"lineto"]
             zan += [x0,y0,"lineto"]
-            if putin[i - 7] == "filledrect":
+            if putin[i - 5] == "filledrect":
                 zan += ["fill"]
             else: zan += ["stroke"]
         elif putin[i] == "tri" or putin[i] == "filledtri":
-            i += 2
+            i += 1
             dou = value(i,putin)
 	    x0 = float(dou[0])
 	    i = dou[1]
@@ -187,15 +190,15 @@ def do(i,xp,yp,degp,sp,putin,zan):
             dou = value(i,putin)
 	    r = float(dou[0])
 	    i = dou[1]
-            i += 2
+            i += 1
             n = 3
 	    list1 = panta(x0,y0,r,n,xp,yp,degp,sp)
             zan += list1
-            if putin[i - 6] == "filledtri":
+            if putin[i - 4] == "filledtri":
                 zan += ["fill"]
             else: zan += ["stroke"]
         elif putin[i] == "square" or putin[i] == "filledsquare":
-            i += 2
+            i += 1
             dou = value(i,putin)
 	    x0 = float(dou[0])
 	    i = dou[1]
@@ -207,15 +210,15 @@ def do(i,xp,yp,degp,sp,putin,zan):
             dou = value(i,putin)
 	    r = float(dou[0])
 	    i = dou[1]
-            i += 2
+            i += 1
             n = 4
 	    list1 = panta(x0,y0,r,n,xp,yp,degp,sp)
             zan += list1
-            if putin[i - 6] == "filledsquare":
+            if putin[i - 4] == "filledsquare":
                 zan += ["fill"]
             else: zan += ["stroke"]
         elif putin[i] == "penta" or putin[i] == "filledpenta":
-            i += 2
+            i += 1
             dou = value(i,putin)
 	    x0 = float(dou[0])
 	    i = dou[1]
@@ -227,15 +230,15 @@ def do(i,xp,yp,degp,sp,putin,zan):
             dou = value(i,putin)
 	    r = float(dou[0])
 	    i = dou[1]
-            i += 2
+            i += 1
             n = 5
 	    list1 = panta(x0,y0,r,n,xp,yp,degp,sp)
             zan += list1
-            if putin[i - 6] == "filledpenta":
+            if putin[i - 4] == "filledpenta":
                 zan += ["fill"]
             else: zan += ["stroke"]
         elif putin[i] == "hexa" or putin[i] == "filledhexa":
-            i += 2
+            i += 1
             dou = value(i,putin)
 	    x0 = float(dou[0])
 	    i = dou[1]
@@ -247,15 +250,15 @@ def do(i,xp,yp,degp,sp,putin,zan):
             dou = value(i,putin)
 	    r = float(dou[0])
 	    i = dou[1]
-            i += 2
+            i += 1
             n = 6
 	    list1 = panta(x0,y0,r,n,xp,yp,degp,sp)
             zan += list1
-            if putin[i - 6] == "filledhexa":
+            if putin[i - 4] == "filledhexa":
                 zan += ["fill"]
             else: zan += ["stroke"]
         elif putin[i] == "ngon" or putin[i] == "filledngon":
-            i += 2
+            i += 1
             dou = value(i,putin)
 	    x0 = float(dou[0])
 	    i = dou[1]
@@ -271,14 +274,14 @@ def do(i,xp,yp,degp,sp,putin,zan):
             dou = value(i,putin)
 	    n = float(dou[0])
 	    i = dou[1]
-            i += 2
+            i += 1
 	    list1 = panta(x0,y0,r,n,xp,yp,degp,sp)
             zan += list1
-            if putin[i - 7] == "filledngon":
+            if putin[i - 5] == "filledngon":
                 zan += ["fill"]
             else: zan += ["stroke"]
         elif putin[i] == "sector" or putin[i] == "filledsector":
-            i += 2
+            i += 1
             dou = value(i,putin)
 	    x0 = float(dou[0])
 	    i = dou[1]
@@ -298,7 +301,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             dou = value(i,putin)
 	    e = float(dou[0])
 	    i = dou[1]
-            i += 2
+            i += 1
             while b < 0:
                 b += 360
             while e < 0:
@@ -326,27 +329,27 @@ def do(i,xp,yp,degp,sp,putin,zan):
             zan += [x1,y1,"lineto"]
             zan += [x0,y0,float(r * sp),float(b + degp),float(e + degp),"arc"]
             zan += [x0,y0,"lineto"]
-            if putin[i - 9] == "filledsector":
+            if putin[i - 6] == "filledsector":
                 zan += ["fill"]
             else: zan += ["stroke"]
         elif putin[i] == "translate":
-            i += 2
+            i += 1
             xp = value(i + 1)
             yp = value(i + 2)
             i = do(i,xp,yp,degp,sp,putin,zan)
         elif putin[i] == "rotate":
-            i += 2
+            i += 1
             degp = value(i + 1)
             degp = 2 * pi * degp /360
             i = do(i,xp,yp,degp,sp,putin,zan)
         elif putin[i] == "translate":
-            i += 2
+            i += 1
             sp = value(i + 1)
             i = do(i,xp,yp,degp,sp,putin,zan)
 
 
         elif putin[i] == "color":
-            i += 2
+            i += 1
             r = value(i,putin)
             i += 1
             g = value(i,putin)
@@ -355,13 +358,11 @@ def do(i,xp,yp,degp,sp,putin,zan):
             i += 1
             zan += [r,g,b,"setrgbcolor"]
         elif putin[i] == "linewith":
-            i += 2
+            i += 1
             w = value(i,putin)
             i += 1
             zan += [w,"setlinewidth"]
-	elif putin[i] == ")":
-		i += 1
-        	return i
+	return i
 
 global zan
 zan = []
@@ -370,15 +371,21 @@ dict = {}
 global pi
 pi = 3.1415926
 putin1 = sys.stdin.read()
+putin1 = putin1.replace('(',' ')
+putin1 = putin1.replace(')',' ')
+putin1 = putin1.replace(',',' ')
 putin2 = ' '.join(putin1.split())
-putin3 = re.split(" |\t|\n|\r|,|",putin2)
+putin3 = re.split(" |\t|\n|\r|",putin2)
 putin = []
 for i in putin3:
-    if i != " " and i != "":
+    if i != " " and i != "" and i != None:
         putin.append(i)
 n = len(putin)
+
 i = 0
-i = do(i,0,0,0,1,putin,zan)
+while i < n:
+
+	i = do(i,0,0,0,1,putin,zan)
 
 k = 0
 zu = []
