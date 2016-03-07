@@ -388,7 +388,7 @@ def do(i,xp,yp,degp,sp,putin,zan):
             zan += [w,"setlinewidth"]
 	elif putin[i] == ")":
 	    i += 1
-	return i
+	    return i
 
 global zan
 zan = []
