@@ -172,16 +172,6 @@ dict = {}
 global pi
 pi = 3.1415926
 putin1 = sys.stdin.read()
-putin1 = putin1.replace(',',' ')
-putin1 = putin1.replace('(',' ( ')
-putin1 = putin1.replace(')',' ) ')
-putin2 = ' '.join(putin1.split())
-putin3 = re.split(" |\t|\n|\r|",putin2)
-putin = []
-for i in putin3:
-    if i != " " and i != "" and i != None:
-        putin.append(i)
-sys.stdout.write("%!PS-Adobe-3.0 EPSF-3.0\r")
 sys.stdout.write("%%BoundingBox: 0 0 1239 1752\r")
 for sb in zan:
 	if (num(sb)):
