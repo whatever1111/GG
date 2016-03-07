@@ -411,11 +411,6 @@ i = 0
 while i < n:
 
 	i = do(i,0,0,0,1,putin,zan)
-
-k = 0
-zu = []
-i = 0
-
 sys.stdout.write("%!PS-Adobe-3.0 EPSF-3.0\r")
 sys.stdout.write("%%BoundingBox: 0 0 1239 1752\r")
 for sb in zan:
